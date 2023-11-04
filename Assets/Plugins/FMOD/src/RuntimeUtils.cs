@@ -225,11 +225,7 @@ namespace FMODUnity
         Record,
         Geometry,
         Profiler,
-        Studio_Update,
-        Studio_Load_Bank,
-        Studio_Load_Sample,
-        Convolution_1,
-        Convolution_2,
+     
     }
 
     // We use our own enum to avoid serialization issues if FMOD.THREAD_AFFINITY changes
@@ -470,16 +466,7 @@ namespace FMODUnity
                     return FMOD.THREAD_TYPE.GEOMETRY;
                 case ThreadType.Profiler:
                     return FMOD.THREAD_TYPE.PROFILER;
-                case ThreadType.Studio_Update:
-                    return FMOD.THREAD_TYPE.STUDIO_UPDATE;
-                case ThreadType.Studio_Load_Bank:
-                    return FMOD.THREAD_TYPE.STUDIO_LOAD_BANK;
-                case ThreadType.Studio_Load_Sample:
-                    return FMOD.THREAD_TYPE.STUDIO_LOAD_SAMPLE;
-                case ThreadType.Convolution_1:
-                    return FMOD.THREAD_TYPE.CONVOLUTION1;
-                case ThreadType.Convolution_2:
-                    return FMOD.THREAD_TYPE.CONVOLUTION2;
+             
                 default:
                     throw new ArgumentException("Unrecognised thread type '" + threadType.ToString() + "'");
             }
@@ -561,7 +548,7 @@ namespace FMODUnity
         {
             if (Settings.Instance == null || Settings.Instance.LoggingLevel >= FMOD.DEBUG_FLAGS.WARNING)
             {
-                Debug.LogWarning(message);
+               // Debug.LogWarning(message);
             }
         }
 

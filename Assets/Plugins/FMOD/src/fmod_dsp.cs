@@ -746,7 +746,9 @@ namespace FMOD
         WINDOWSIZE,
         WINDOWTYPE,
         SPECTRUMDATA,
-        DOMINANT_FREQ
+        DOMINANT_FREQ,
+        WINDOW,
+        HANNING
     }
 
 

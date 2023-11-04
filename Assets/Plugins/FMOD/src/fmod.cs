@@ -3559,6 +3559,11 @@ namespace FMOD
         public void clearHandle()   { this.handle = IntPtr.Zero; }
 
         #endregion
+
+        public void getSpectrum(float[] spectrum, int i, int i1, DSP_FFT_WINDOW hamming)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     /*

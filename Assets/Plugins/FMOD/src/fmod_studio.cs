@@ -1296,6 +1296,16 @@ namespace FMOD.Studio
         }
 
         #endregion
+
+        public void getParameter(string parametername, out ParameterInstance parameterInstance)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ParameterInstance
+    {
+        
     }
 
     public struct EventInstance
@@ -1723,6 +1733,11 @@ namespace FMOD.Studio
         }
 
         #endregion
+
+        public void getDSP(int i, out DSP fftDSP)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public struct VCA
