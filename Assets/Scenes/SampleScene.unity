@@ -608,7 +608,6 @@ GameObject:
   - component: {fileID: 956250695}
   - component: {fileID: 956250694}
   - component: {fileID: 956250699}
-  - component: {fileID: 956250700}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -753,18 +752,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &956250700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956250693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6075c47d7426aa240ae1fe2ad682d5e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1106586084
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,6 +856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1198531563}
   - component: {fileID: 1198531564}
+  - component: {fileID: 1198531565}
   m_Layer: 0
   m_Name: Enemy Hunter
   m_TagString: Untagged
@@ -913,6 +901,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1198531565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198531562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6075c47d7426aa240ae1fe2ad682d5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1440443730
 GameObject:
   m_ObjectHideFlags: 0
