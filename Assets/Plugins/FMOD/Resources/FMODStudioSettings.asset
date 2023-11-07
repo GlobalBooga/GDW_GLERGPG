@@ -359,8 +359,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../New folder/New folder/Fmod2/Fmod2.fspro
-  sourceBankPath: ../../New folder/New folder/Fmod2/Build
+  sourceProjectPath: Assets/Fmod/Fmod2/Fmod2.fspro
+  sourceBankPath: Assets/Fmod/Fmod2/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
