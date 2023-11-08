@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class EmissiveButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerDownHandler
 {
-    [SerializeField] Sprite normalSprite;
-    [SerializeField] Sprite hoverSprite;
+    [SerializeField] Material hoverMaterial;
     [SerializeField] float clickScale = 1.1f;
 
     Image image;
@@ -29,15 +28,13 @@ public class EmissiveButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!hoverSprite) return;
-        image.sprite = hoverSprite;
+        if (!hoverMaterial) return;
+        image.material = hoverMaterial;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         transform.localScale = Vector3.one;
-
-        if (!normalSprite) return;
-        image.sprite = normalSprite;
+        image.material = null;
     }
 }
