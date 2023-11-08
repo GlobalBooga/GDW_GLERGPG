@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     private int horizontalCache;
     private int verticalCache;
     
@@ -14,10 +14,22 @@ public class AnimatorManager : MonoBehaviour
         verticalCache = Animator.StringToHash("vertical");
     }
 
-    public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement)
+    public void PlayTargetAnimation(string targetAnim, bool isInteracting)
+    {
+        animator.SetBool("isInteracting", isInteracting);
+        animator.CrossFade(targetAnim, 0.2f);
+    }
+
+    public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement, bool isSprinting)
     {
         var snappedHorizontal = SnapAnimation(horizontalMovement);
         var snappedVertical = SnapAnimation(verticalMovement);
+
+        if (isSprinting)
+        {
+            snappedHorizontal = horizontalMovement;
+            snappedVertical = 2f;
+        }
         
         animator.SetFloat(horizontalCache, snappedHorizontal, 0.1f, Time.deltaTime);
         animator.SetFloat(verticalCache, snappedVertical, 0.1f, Time.deltaTime);

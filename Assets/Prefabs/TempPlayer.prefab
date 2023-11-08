@@ -756,9 +756,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!95 &1532259365555471707
 Animator:
   serializedVersion: 5
@@ -794,6 +794,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalInput: 0
   verticalInput: 0
+  moveAmount: 0
+  sprintInput: 0
 --- !u!114 &3504977360425056020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78bb163a337c084e937cfb62e4e8095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInteracting: 0
 --- !u!114 &3241591726120098437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,8 +833,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bf8db90aa13f246abbe173a0186688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 12
+  isSprinting: 0
+  walkingSpeed: 3
+  runningSpeed: 7
+  sprintingSpeed: 12
   rotationSpeed: 18
+  leapingVelocity: 3
+  fallingVelocity: 33
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  raycastHeightOffset: 0.5
 --- !u!1 &2990844228388820181
 GameObject:
   m_ObjectHideFlags: 0
