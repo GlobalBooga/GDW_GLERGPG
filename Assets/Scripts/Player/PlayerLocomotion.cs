@@ -93,7 +93,7 @@ public class PlayerLocomotion : MonoBehaviour
         if (!isGrounded && !isJumping)
         {
             if (!playerManager.isInteracting)
-                animatorManager.PlayTargetAnimation("Fall", true);
+               // animatorManager.PlayTargetAnimation("Fall", true);
 
             inAirTimer += Time.deltaTime;
             rb.AddForce(transform.forward * leapingVelocity);
@@ -126,8 +126,9 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (isGrounded)
         {
-            animatorManager.animator.SetBool("isJumping", true);
-            animatorManager.PlayTargetAnimation("Jump", false);
+          //  animatorManager.animator.SetBool("isJumping", true);
+          animatorManager.animator.SetTrigger("jump");
+          //  animatorManager.PlayTargetAnimation("Jump", false);
 
             float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight);
             Vector3 playerVelocity = moveDirection;
