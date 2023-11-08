@@ -729,9 +729,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4
-  m_Height: 2
+  m_Height: 1.6
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!54 &1715375221450185155
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -796,6 +796,7 @@ MonoBehaviour:
   verticalInput: 0
   moveAmount: 0
   sprintInput: 0
+  jumpInput: 0
 --- !u!114 &3504977360425056020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5b32d03d6012b44a9ce357d95c4279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!114 &3281739423414858234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -834,16 +836,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSprinting: 0
+  isJumping: 0
+  isGrounded: 1
   walkingSpeed: 3
   runningSpeed: 7
   sprintingSpeed: 12
   rotationSpeed: 18
   leapingVelocity: 3
   fallingVelocity: 33
+  jumpHeight: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   raycastHeightOffset: 0.5
+  gravityIntensity: -15
 --- !u!1 &2990844228388820181
 GameObject:
   m_ObjectHideFlags: 0

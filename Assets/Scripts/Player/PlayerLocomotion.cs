@@ -4,8 +4,7 @@ using UnityEngine;
 public class PlayerLocomotion : MonoBehaviour
 {
     [HideInInspector] public bool isSprinting;
-    //[HideInInspector] public bool isJumping;
-    public bool isJumping;
+    [HideInInspector] public bool isJumping;
     [HideInInspector] public bool isGrounded = true;
     
     [Header("Ground values")]
@@ -88,6 +87,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 raycastOrigin = transform.position;
+        Vector3 targetPos = transform.position;
         raycastOrigin.y += raycastHeightOffset;
         
         if (!isGrounded && !isJumping)
@@ -100,16 +100,26 @@ public class PlayerLocomotion : MonoBehaviour
             rb.AddForce(-Vector3.up * (fallingVelocity * inAirTimer));
         }
 
-        if (Physics.SphereCast(raycastOrigin, 0.2f, -Vector3.up, out hit, 0.5f, groundLayer))
+        if (Physics.SphereCast(raycastOrigin, 0.2f, -Vector3.up, out hit, 1f, groundLayer))
         {
             if (!isGrounded && playerManager.isInteracting) animatorManager.PlayTargetAnimation("Land", true);
 
+            Vector3 raycastHitPoint = hit.point;
+            targetPos.y = raycastHitPoint.y;
             inAirTimer = 0f;
             isGrounded = true;
             playerManager.isInteracting = false;
         }
         else
             isGrounded = false;
+
+        if (isGrounded && !isJumping)
+        {
+            if (playerManager.isInteracting || inputManager.moveAmount > 0)
+                transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime / 0.1f);
+            else
+                transform.position = targetPos;
+        }
     }
 
     public void HandleJumping()

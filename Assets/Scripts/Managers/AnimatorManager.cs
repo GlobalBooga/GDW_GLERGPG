@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
-    public Animator animator;
+    [HideInInspector] public Animator animator;
     private int horizontalCache;
     private int verticalCache;
     
