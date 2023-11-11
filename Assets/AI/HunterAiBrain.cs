@@ -11,6 +11,8 @@ public class HunterAiBrain : MonoBehaviour
     //float value for navmeshagent speed
     private float viewAlert = 0.0f;
     //scaler for detecting how long the player is in view
+    private float daylightLevel = 0.03f;
+    //Amount of daylight, tied to time of day
     
     float targetX = 10.0f; // Replace with your desired global X coordinate
     float targetZ = 5.0f; 
@@ -20,7 +22,7 @@ public class HunterAiBrain : MonoBehaviour
     {
         HunterAgent = GetComponent<NavMeshAgent>();
         hunterAnimator = GetComponent<Animator>();
-
+     //   viewAlert = Mathf.Clamp(0.1f, 0f, 5f);
     }
 
     private void Update()
@@ -30,25 +32,55 @@ public class HunterAiBrain : MonoBehaviour
         {
             Debug.Log("har har har har");
         }
-
+        Debug.Log(viewAlert);
     }
     private bool IsPlayerInVision()
     {
-        // Define the ray from the AI's position to the player's position
-        Vector3 directionToPlayer = PlayerLocation.position - transform.position;
-
-        // Use raycasting to check if there are obstacles between the AI and the player
-        if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, visionRange, visionLayerMask))
+      // The maximum distance of the cone
+      float coneAngle = 45f; // The angle of the cone in degrees
+      float coneDistance = 10f; // The maximum distance of the cone
+      viewAlert = Mathf.Clamp(viewAlert, 0f, 5f);
+// Loop through angles to create rays in a cone
+        for (float angle = -coneAngle / 2f; angle <= coneAngle / 2f; angle += 5f)
         {
-            // Check if the hit object is the player
-            if (hit.collider.CompareTag("Player"))
-            {
-                return true; // Player is in vision
-            }
-        }
+            // Convert the angle to radians
+            float radianAngle = Mathf.Deg2Rad * angle;
 
-        return false; // Player is not in vision
+            // Calculate the direction vector based on the angle
+            Vector3 coneDirection = new Vector3(Mathf.Sin(radianAngle), 0f, Mathf.Cos(radianAngle));
+
+            // Cast a ray in the calculated direction
+            Ray ray = new Ray(transform.position, transform.TransformDirection(coneDirection));
+            RaycastHit hit;
+            // Visualize the ray in the editor
+            Debug.DrawRay(ray.origin, ray.direction * coneDistance, Color.green);
+            // Check if the ray hits something
+            if (Physics.Raycast(ray, out hit, coneDistance))
+            {
+                // Handle the hit, for example, check if the hit object is the player
+                if (hit.collider.CompareTag("Player"))
+                {
+                    // Increase the visionAlert based on the hit distance or any other criteria
+                    viewAlert += daylightLevel;
+                    hunterAnimator.SetFloat("viewAlert", viewAlert);
+                   
+                    
+                }
+                else
+                {
+                     
+                    viewAlert -= 0.01f;
+                    hunterAnimator.SetFloat("viewAlert", viewAlert);
+                }
+            }
+           
+        }
+           
+        
+         return false;
     }
+        
+        
     public void HunterIdle()
     {
         // Define the radius around the hunter
