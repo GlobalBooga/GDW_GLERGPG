@@ -28,7 +28,7 @@ public class HunterAiBrain : MonoBehaviour
 // Check if the player is within the AI's vision range
         if (IsPlayerInVision())
         {
-           
+            Debug.Log("har har har har");
         }
 
     }
@@ -52,7 +52,7 @@ public class HunterAiBrain : MonoBehaviour
     public void HunterIdle()
     {
         // Define the radius around the hunter
-        float radius = 5.0f; // Adjust this value as needed
+        float radius = 2.0f; // Adjust this value as needed
 
         // Generate a random position within the defined radius
         Vector3 randomDestination;
@@ -69,7 +69,6 @@ public class HunterAiBrain : MonoBehaviour
         // Ensure the agent is not stopped and clear the current path
         HunterAgent.isStopped = false;
         HunterAgent.ResetPath();
-
         // Set the AI's destination to the random position
         HunterAgent.SetDestination(randomDestination);
 
@@ -89,6 +88,9 @@ public class HunterAiBrain : MonoBehaviour
 
     public void HunterAggression()
     {
+        
+        //set stopping distance to 3
+        
         HunterAgent.SetDestination(PlayerLocation.position);
         // Check if the agent has reached its destination or is very close
         if (!HunterAgent.pathPending && HunterAgent.remainingDistance <= HunterAgent.stoppingDistance)
@@ -96,6 +98,8 @@ public class HunterAiBrain : MonoBehaviour
             // The agent has reached the destination or is very close
             // Perform any actions you want when the agent reaches the target
             Debug.Log("Hunter has reached the player!");
+            
+            //shoot player
         }
     }
 
