@@ -211,6 +211,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""59cc31b9-ff8c-486a-9329-1b52102e30e7"",
+            ""actions"": [
+                {
+                    ""name"": ""PauseUnpause"",
+                    ""type"": ""Button"",
+                    ""id"": ""74891cb2-d1d5-42b4-8689-b3478878a79b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d1e2edf2-a5b8-4724-8f71-7a003e9517f6"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseUnpause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -220,6 +248,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
         m_Default_Sprint = m_Default.FindAction("Sprint", throwIfNotFound: true);
         m_Default_Jump = m_Default.FindAction("Jump", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_PauseUnpause = m_Menu.FindAction("PauseUnpause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,10 +370,60 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public DefaultActions @Default => new DefaultActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
+    private readonly InputAction m_Menu_PauseUnpause;
+    public struct MenuActions
+    {
+        private @PlayerControls m_Wrapper;
+        public MenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PauseUnpause => m_Wrapper.m_Menu_PauseUnpause;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void AddCallbacks(IMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
+            @PauseUnpause.started += instance.OnPauseUnpause;
+            @PauseUnpause.performed += instance.OnPauseUnpause;
+            @PauseUnpause.canceled += instance.OnPauseUnpause;
+        }
+
+        private void UnregisterCallbacks(IMenuActions instance)
+        {
+            @PauseUnpause.started -= instance.OnPauseUnpause;
+            @PauseUnpause.performed -= instance.OnPauseUnpause;
+            @PauseUnpause.canceled -= instance.OnPauseUnpause;
+        }
+
+        public void RemoveCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     public interface IDefaultActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnPauseUnpause(InputAction.CallbackContext context);
     }
 }
