@@ -6,20 +6,21 @@ public class HunterAiBrain : MonoBehaviour
 {
     private NavMeshAgent HunterAgent;
     private Animator hunterAnimator;
-    //other components yeah boi
+    //other components 
     public Transform PlayerLocation;
     //float value for navmeshagent speed
     private float viewAlert = 0.0f;
     //scaler for detecting how long the player is in view
     private float daylightLevel = 0.03f;
     //Amount of daylight, tied to time of day
-    
+    private Rigidbody cc;
     float targetX = 10.0f; // Replace with your desired global X coordinate
     float targetZ = 5.0f; 
     public float visionRange = 10f;
     public LayerMask visionLayerMask;
     private void Start()
     {
+        cc = GetComponent<Rigidbody>();
         HunterAgent = GetComponent<NavMeshAgent>();
         hunterAnimator = GetComponent<Animator>();
      //   viewAlert = Mathf.Clamp(0.1f, 0f, 5f);
@@ -27,10 +28,12 @@ public class HunterAiBrain : MonoBehaviour
 
     private void Update()
     {
-// Check if the player is within the AI's vision range
+     
+     
+   
         if (IsPlayerInVision())
         {
-            Debug.Log("har har har har");
+            
         }
         Debug.Log(viewAlert);
     }
@@ -83,6 +86,7 @@ public class HunterAiBrain : MonoBehaviour
         
     public void HunterIdle()
     {
+       
         // Define the radius around the hunter
         float radius = 2.0f; // Adjust this value as needed
 
@@ -106,6 +110,9 @@ public class HunterAiBrain : MonoBehaviour
 
         // Set the AI's speed to a lower value
         HunterAgent.speed = 1.0f; // You can adjust this value as needed
+        
+        float zSpeed = HunterAgent.speed;
+        hunterAnimator.SetFloat("ZSpeed", zSpeed);
     }
     private bool IsDestinationWithinRadius(Vector3 destination, Vector3 center, float radius)
     {
@@ -124,6 +131,7 @@ public class HunterAiBrain : MonoBehaviour
         //set stopping distance to 3
         
         HunterAgent.SetDestination(PlayerLocation.position);
+        HunterAgent.speed = 1.5f;
         // Check if the agent has reached its destination or is very close
         if (!HunterAgent.pathPending && HunterAgent.remainingDistance <= HunterAgent.stoppingDistance)
         {
@@ -133,6 +141,8 @@ public class HunterAiBrain : MonoBehaviour
             
             //shoot player
         }
+        float zSpeed = HunterAgent.speed;
+        hunterAnimator.SetFloat("ZSpeed", zSpeed);
     }
 
 }
