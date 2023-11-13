@@ -1,80 +1,125 @@
 using UnityEngine;
 using FMODUnity;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class HunterAiBrain : MonoBehaviour
 {
     private NavMeshAgent HunterAgent;
     private Animator hunterAnimator;
-    //other components yeah boi
+    //other components 
     public Transform PlayerLocation;
     //float value for navmeshagent speed
     private float viewAlert = 0.0f;
     //scaler for detecting how long the player is in view
-    
+    private float daylightLevel = 0.03f;
+    //Amount of daylight, tied to time of day
+    private Rigidbody cc;
     float targetX = 10.0f; // Replace with your desired global X coordinate
     float targetZ = 5.0f; 
     public float visionRange = 10f;
     public LayerMask visionLayerMask;
+    private float zSpeed;
     private void Start()
     {
+        cc = GetComponent<Rigidbody>();
         HunterAgent = GetComponent<NavMeshAgent>();
         hunterAnimator = GetComponent<Animator>();
-
+     //   viewAlert = Mathf.Clamp(0.1f, 0f, 5f);
     }
 
     private void Update()
     {
-// Check if the player is within the AI's vision range
+
+
+        float xSpeed = transform.InverseTransformVector(cc.velocity).x;
+        float zSpeed = transform.InverseTransformVector(cc.velocity).z;
+        hunterAnimator.SetFloat("ZSpeed", zSpeed);
+
+
         if (IsPlayerInVision())
         {
-           
-        }
 
+        }
+       
+        Debug.Log(zSpeed);
     }
     private bool IsPlayerInVision()
     {
-        // Define the ray from the AI's position to the player's position
-        Vector3 directionToPlayer = PlayerLocation.position - transform.position;
+    
+      float coneAngle = 45f; 
+      float coneDistance = 10f; 
+      viewAlert = Mathf.Clamp(viewAlert, 0f, 5f);
 
-        // Use raycasting to check if there are obstacles between the AI and the player
-        if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, visionRange, visionLayerMask))
+        for (float angle = -coneAngle / 2f; angle <= coneAngle / 2f; angle += 5f)
         {
-            // Check if the hit object is the player
-            if (hit.collider.CompareTag("Player"))
-            {
-                return true; // Player is in vision
-            }
-        }
+           
+            float radianAngle = Mathf.Deg2Rad * angle;
 
-        return false; // Player is not in vision
+          
+            Vector3 coneDirection = new Vector3(Mathf.Sin(radianAngle), 0f, Mathf.Cos(radianAngle));
+
+            Ray ray = new Ray(transform.position, transform.TransformDirection(coneDirection));
+            RaycastHit hit;
+         
+            Debug.DrawRay(ray.origin, ray.direction * coneDistance, Color.green);
+           
+            if (Physics.Raycast(ray, out hit, coneDistance))
+            {
+     
+                if (hit.collider.CompareTag("Player"))
+                {
+                   
+                    viewAlert += daylightLevel;
+                    hunterAnimator.SetFloat("viewAlert", viewAlert);
+                   
+                    
+                }
+                else
+                {
+                    viewAlert -= 0.01f;
+
+                    hunterAnimator.SetFloat("viewAlert", viewAlert);
+                }
+            }
+           
+        }
+           
+        
+         return false;
     }
+        
+        
     public void HunterIdle()
     {
-        // Define the radius around the hunter
-        float radius = 5.0f; // Adjust this value as needed
+        HunterAgent.stoppingDistance = 0;
+       
+        float radius = 2.0f; 
+       
+        
+        hunterAnimator.SetBool("isShooting", false);
 
-        // Generate a random position within the defined radius
         Vector3 randomDestination;
         do
         {
             randomDestination = HunterAgent.transform.position +
                                 new Vector3(
                                     Random.Range(-radius, radius),
-                                    0.0f,  // Assuming your terrain is flat, so Y = 0
+                                    0.0f,  
                                     Random.Range(-radius, radius)
                                 );
         } while (!IsDestinationWithinRadius(randomDestination, HunterAgent.transform.position, radius));
 
-        // Ensure the agent is not stopped and clear the current path
         HunterAgent.isStopped = false;
         HunterAgent.ResetPath();
-
-        // Set the AI's destination to the random position
+        
         HunterAgent.SetDestination(randomDestination);
 
-        // Set the AI's speed to a lower value
-        HunterAgent.speed = 1.0f; // You can adjust this value as needed
+        
+        HunterAgent.speed = 1.0f; 
+        
+      
+    
     }
     private bool IsDestinationWithinRadius(Vector3 destination, Vector3 center, float radius)
     {
@@ -82,21 +127,29 @@ public class HunterAiBrain : MonoBehaviour
     }
     public void HunterSearching()
     {
-        //set position of noise, if noise is louder then set speed of navmesh higher, if its lower then yeah lol
-        
-        //
+    
     }
 
     public void HunterAggression()
     {
+   
+        HunterAgent.stoppingDistance = 3;
         HunterAgent.SetDestination(PlayerLocation.position);
+        HunterAgent.speed = 1.5f;
         // Check if the agent has reached its destination or is very close
         if (!HunterAgent.pathPending && HunterAgent.remainingDistance <= HunterAgent.stoppingDistance)
         {
             // The agent has reached the destination or is very close
             // Perform any actions you want when the agent reaches the target
             Debug.Log("Hunter has reached the player!");
+            hunterAnimator.SetBool("isShooting", true);
+            //shoot player
         }
+        else
+        {
+            
+        }
+  
     }
 
 }
