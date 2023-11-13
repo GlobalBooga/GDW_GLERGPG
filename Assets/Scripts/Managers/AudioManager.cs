@@ -9,13 +9,13 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     private Bus uiBus;
-    private Bus ambianceBus;
+    private Bus ambienceBus;
     private Bus playerBus;
     private Bus masterBus;
 
     public float uiVolume = 0.5f;
     public float playerVolume = 1;
-    public float ambianceVolume = 0.75f;
+    public float ambienceVolume = 0.75f;
     public float masterVolume = 1;
 
     private void Awake()
@@ -30,16 +30,16 @@ public class AudioManager : MonoBehaviour
             instance = this;
         }
         masterBus = RuntimeManager.GetBus("bus:/");
-        uiBus = RuntimeManager.GetBus("bus:/Menu");
-        ambianceBus = RuntimeManager.GetBus("bus:/Ambiance");
-        playerBus = RuntimeManager.GetBus("bus:/Player");
+        uiBus = RuntimeManager.GetBus("bus:/Sound/Menu");
+        ambienceBus = RuntimeManager.GetBus("bus:/Sound/Ambience");
+        playerBus = RuntimeManager.GetBus("bus:/Sound/Player");
     }
 
     private void Update()
     {
         uiBus.setVolume(uiVolume);
         masterBus.setVolume(masterVolume);
-        ambianceBus.setVolume(ambianceVolume);
+        ambienceBus.setVolume(ambienceVolume);
         playerBus.setVolume(playerVolume);
     }
 
