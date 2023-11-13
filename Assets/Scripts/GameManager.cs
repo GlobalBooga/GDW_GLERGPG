@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
-        start = Quaternion.Euler(sunStartRot, transform.rotation.eulerAngles.y, 0);
-        end = Quaternion.Euler(sunEndRot, transform.rotation.eulerAngles.y, 0);
+        start = Quaternion.Euler(sunStartRot, -30, 0);
+        end = Quaternion.Euler(sunEndRot, -30, 0);
     }
 
     void Update()
@@ -64,5 +64,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void PlayerDied()
+    {
+        Time.timeScale = 0;
     }
 }

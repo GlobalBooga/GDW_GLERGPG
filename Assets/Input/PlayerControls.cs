@@ -53,6 +53,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""e6be30f6-b479-413e-8575-f07a50827e2c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -209,6 +218,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fecae3cf-ba02-4038-928e-edcb0ebba970"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -248,6 +268,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
         m_Default_Sprint = m_Default.FindAction("Sprint", throwIfNotFound: true);
         m_Default_Jump = m_Default.FindAction("Jump", throwIfNotFound: true);
+        m_Default_Look = m_Default.FindAction("Look", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_PauseUnpause = m_Menu.FindAction("PauseUnpause", throwIfNotFound: true);
@@ -315,6 +336,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Movement;
     private readonly InputAction m_Default_Sprint;
     private readonly InputAction m_Default_Jump;
+    private readonly InputAction m_Default_Look;
     public struct DefaultActions
     {
         private @PlayerControls m_Wrapper;
@@ -322,6 +344,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Default_Movement;
         public InputAction @Sprint => m_Wrapper.m_Default_Sprint;
         public InputAction @Jump => m_Wrapper.m_Default_Jump;
+        public InputAction @Look => m_Wrapper.m_Default_Look;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -340,6 +363,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
         }
 
         private void UnregisterCallbacks(IDefaultActions instance)
@@ -353,6 +379,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
         }
 
         public void RemoveCallbacks(IDefaultActions instance)
@@ -421,6 +450,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

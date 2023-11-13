@@ -446,6 +446,7 @@ MonoBehaviour:
   moveAmount: 0
   sprintInput: 0
   jumpInput: 0
+  pause: 0
 --- !u!114 &3504977360425056020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,9 +488,9 @@ MonoBehaviour:
   isSprinting: 0
   isJumping: 0
   isGrounded: 1
-  walkingSpeed: 3
-  runningSpeed: 7
-  sprintingSpeed: 12
+  walkingSpeed: 1
+  runningSpeed: 2
+  sprintingSpeed: 6
   rotationSpeed: 18
   leapingVelocity: 3
   fallingVelocity: 33
