@@ -396,7 +396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000019073, y: 256.2}
+  m_AnchoredPosition: {x: 0, y: 272}
   m_SizeDelta: {x: 304.5, y: 124.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8197298063053340521
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -548,6 +548,18 @@ PrefabInstance:
     - target: {fileID: 6373428028611679842, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153317708535999577, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: menuTitle
+      value: 
+      objectReference: {fileID: 3464559044054247046}
+    - target: {fileID: 8153317708535999577, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: titleEnd.y
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153317708535999577, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: titleStart.y
+      value: 272
       objectReference: {fileID: 0}
     - target: {fileID: 8153317708535999577, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
       propertyPath: menuButtons.Array.data[0]
