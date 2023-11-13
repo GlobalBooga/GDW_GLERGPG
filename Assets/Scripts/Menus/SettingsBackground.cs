@@ -8,10 +8,15 @@ public class SettingsBackground : MonoBehaviour
     [SerializeField] float animationSpeed = 3;
     [SerializeField] Image[] menuButtons;
     [SerializeField] Image[] settingsControls;
+    [SerializeField] RectTransform menuTitle;
     bool midpoint;
     Image currentBorder;
     int currentIndex;
     int direction = 0;
+    [SerializeField] Vector3 titleStart;
+    [SerializeField] Vector3 titleEnd;
+    AnimationCurve titleCurve = AnimationCurve.EaseInOut(0,0,1,1);
+    float titleAnimTime;
 
     private void Awake()
     {
@@ -32,6 +37,7 @@ public class SettingsBackground : MonoBehaviour
         currentBorder = borders[currentIndex];
         direction = 1;
         midpoint = false;
+        titleAnimTime = 0f;
     }
 
     public void DisableSelf()
@@ -40,6 +46,7 @@ public class SettingsBackground : MonoBehaviour
         currentBorder = borders[currentIndex];
         direction = -1;
         midpoint = false;
+        titleAnimTime = 0f;
     }
 
     // Update is called once per frame
@@ -80,7 +87,7 @@ public class SettingsBackground : MonoBehaviour
             midpoint = true;
         }
 
-        // show settings
+        // hide/show settings
         if (direction < 0 || (direction > 0 && midpoint == true))
         {
             for (int i = 0; i < settingsControls.Length; i++)
@@ -89,5 +96,10 @@ public class SettingsBackground : MonoBehaviour
                 settingsControls[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(direction), Time.unscaledDeltaTime * animationSpeed * 1f));
             }
         }
+
+        // move title up and down
+        if (!menuTitle || titleAnimTime > 1) return;
+        titleAnimTime += Time.unscaledDeltaTime * animationSpeed * 0.5f;
+        menuTitle.localPosition = Vector3.Lerp(direction > 0 ? titleStart : titleEnd, direction > 0 ? titleEnd : titleStart, titleCurve.Evaluate(titleAnimTime));
     }
 }

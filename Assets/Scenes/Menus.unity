@@ -1022,7 +1022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1068064837
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1882,21 +1882,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 2636124901206124934, guid: 108af34feb693c149a3b66ee7ab602b4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5472368927560851904, guid: 108af34feb693c149a3b66ee7ab602b4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6238426063145062006, guid: 108af34feb693c149a3b66ee7ab602b4, type: 3}
-      propertyPath: m_Maskable
-      value: 1
+    - target: {fileID: 7725899605209194118, guid: 108af34feb693c149a3b66ee7ab602b4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8773585
       objectReference: {fileID: 0}
-    - target: {fileID: 6238426063145062006, guid: 108af34feb693c149a3b66ee7ab602b4, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
+    - target: {fileID: 7725899605209194118, guid: 108af34feb693c149a3b66ee7ab602b4, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8773585
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725899605209194118, guid: 108af34feb693c149a3b66ee7ab602b4, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8773585
       objectReference: {fileID: 0}
     - target: {fileID: 7855537013608567167, guid: 108af34feb693c149a3b66ee7ab602b4, type: 3}
       propertyPath: m_AnchorMax.y
