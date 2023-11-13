@@ -30,17 +30,17 @@ public class AudioManager : MonoBehaviour
             instance = this;
         }
         masterBus = RuntimeManager.GetBus("bus:/");
-        uiBus = RuntimeManager.GetBus("bus:/Sound/Menu");
-        ambienceBus = RuntimeManager.GetBus("bus:/Sound/Ambience");
-        playerBus = RuntimeManager.GetBus("bus:/Sound/Player");
+        //uiBus = RuntimeManager.GetBus("bus:/Sound/Menu");
+        //ambienceBus = RuntimeManager.GetBus("bus:/Sound/Ambience");
+        //playerBus = RuntimeManager.GetBus("bus:/Sound/Player");
     }
 
     private void Update()
     {
-        uiBus.setVolume(uiVolume);
         masterBus.setVolume(masterVolume);
-        ambienceBus.setVolume(ambienceVolume);
-        playerBus.setVolume(playerVolume);
+        //uiBus.setVolume(uiVolume);
+        //ambienceBus.setVolume(ambienceVolume);
+        //playerBus.setVolume(playerVolume);
     }
 
     public void PlayOneShot(EventReference sound, Vector3 pos)
