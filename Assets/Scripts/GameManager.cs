@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Canvas Settings")]
     public GameObject pauseMenu;
+    public GameObject gameOverMenu;
 
     public PlayerManager Player;
 
@@ -76,6 +77,6 @@ public class GameManager : MonoBehaviour
 
     public void ShowRestartMenu()
     {
-
+        gameOverMenu.SetActive(true);
     }
 }
