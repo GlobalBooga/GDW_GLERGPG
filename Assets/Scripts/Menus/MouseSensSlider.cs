@@ -15,6 +15,7 @@ public class MouseSensSlider : MonoBehaviour
         slider.value = PlayerPrefs.GetFloat("Sensitivity", 1);
     }
 
+
     public void SaveValue(float value)
     {
         PlayerPrefs.SetFloat("Sensitivity", value);

@@ -172,8 +172,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 5a0161bb55d2c694fae035fd2231ed88, type: 2}
   clickScale: 0.9
-  selectClip: {fileID: 0}
-  confirmClip: {fileID: 0}
+  selectClip:
+    Guid:
+      Data1: -797498198
+      Data2: 1250691560
+      Data3: 368627641
+      Data4: -1406475451
+    Path: event:/Select
+  confirmClip:
+    Guid:
+      Data1: -2063362449
+      Data2: 1133938594
+      Data3: -156150391
+      Data4: 829496561
+    Path: event:/Confirm
 --- !u!1 &5556226243500159427
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,8 +277,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 379695424db09174cafab6d99d37f5a0, type: 2}
   clickScale: 0.9
-  selectClip: {fileID: 0}
-  confirmClip: {fileID: 0}
+  selectClip:
+    Guid:
+      Data1: -797498198
+      Data2: 1250691560
+      Data3: 368627641
+      Data4: -1406475451
+    Path: event:/Select
+  confirmClip:
+    Guid:
+      Data1: -2063362449
+      Data2: 1133938594
+      Data3: -156150391
+      Data4: 829496561
+    Path: event:/Confirm
   settingsPanel: {fileID: 4726413824770544134}
 --- !u!1 &7846699764356003542
 GameObject:
@@ -359,8 +383,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: ba39089a05d21b342aa53318472b351d, type: 2}
   clickScale: 0.9
-  selectClip: {fileID: 0}
-  confirmClip: {fileID: 0}
+  selectClip:
+    Guid:
+      Data1: -797498198
+      Data2: 1250691560
+      Data3: 368627641
+      Data4: -1406475451
+    Path: event:/Select
+  confirmClip:
+    Guid:
+      Data1: -2063362449
+      Data2: 1133938594
+      Data3: -156150391
+      Data4: 829496561
+    Path: event:/Confirm
 --- !u!1 &9173174532746170923
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +585,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: selectClip.Path
+      value: event:/Select
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: confirmClip.Path
+      value: event:/Confirm
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: selectClip.Guid.Data1
+      value: -797498198
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: selectClip.Guid.Data2
+      value: 1250691560
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: selectClip.Guid.Data3
+      value: 368627641
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: selectClip.Guid.Data4
+      value: -1406475451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: confirmClip.Guid.Data1
+      value: -2063362449
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: confirmClip.Guid.Data2
+      value: 1133938594
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: confirmClip.Guid.Data3
+      value: -156150391
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: confirmClip.Guid.Data4
+      value: 829496561
+      objectReference: {fileID: 0}
     - target: {fileID: 8153317708535999577, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
       propertyPath: menuTitle
       value: 
@@ -573,7 +649,8 @@ PrefabInstance:
       propertyPath: menuButtons.Array.data[2]
       value: 
       objectReference: {fileID: 5269566911570686403}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8253462205914727850, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

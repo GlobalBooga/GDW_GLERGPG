@@ -21,7 +21,7 @@ public class EmissiveButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
         transform.localScale = Vector3.one;
 
         if (selectClip.IsNull) return;
-        AudioManager.instance.PlayOneShot(selectClip, transform.position);
+        AudioManager.instance.PlayOneShot(confirmClip, transform.position);
         
     }
 
