@@ -11,16 +11,16 @@ public class VolumeSlider : MonoBehaviour
     {
         slider = GetComponent<Slider>();
         slider.onValueChanged.AddListener((value) => { SaveValue(value); });
-        slider.value = PlayerPrefs.GetFloat("Volume", 1);
     }
 
     private void Start()
     {
-        AudioManager.instance.masterVolume = slider.value;
+        slider.value = PlayerPrefs.GetFloat("Volume", 1);
     }
 
     public void SaveValue(float value)
     {
         PlayerPrefs.SetFloat("Volume", value);
+        AudioManager.instance.masterVolume = slider.value;
     }
 }

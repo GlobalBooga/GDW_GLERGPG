@@ -1216,10 +1216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55baf2b1de4a51540bd27f8c43a5946d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiVolume: 0
-  otherVolume: 0
-  ambianceVolume: 0
-  masterVolume: 0
+  uiVolume: 0.5
+  playerVolume: 1
+  ambienceVolume: 0.75
+  masterVolume: 1
 --- !u!4 &1411560061
 Transform:
   m_ObjectHideFlags: 0

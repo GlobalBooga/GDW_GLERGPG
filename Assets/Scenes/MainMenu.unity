@@ -421,7 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiVolume: 0.5
   playerVolume: 1
-  ambianceVolume: 0.75
+  ambienceVolume: 0.75
   masterVolume: 1
 --- !u!1 &1867397852
 GameObject:
