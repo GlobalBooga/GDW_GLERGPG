@@ -35,4 +35,6 @@ public class PlayerManager : MonoBehaviour
         playerLocomotion.isJumping = animator.GetBool("isJumping");
         animator.SetBool("isGrounded", playerLocomotion.isGrounded);
     }
+
+    public InputManager GetInputManager() { return inputManager; }
 }

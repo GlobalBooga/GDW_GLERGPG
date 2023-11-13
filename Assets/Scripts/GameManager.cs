@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("Canvas Settings")]
     public GameObject pauseMenu;
 
+    public PlayerManager Player;
 
     private float time;
     private Quaternion start;
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
     public void UnPauseGame()
     {
         if (!pauseMenu) return;
+
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;

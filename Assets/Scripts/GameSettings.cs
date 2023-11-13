@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class GameSettings : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        
+        // get settings from playerPrefs    
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SaveSettings()
     {
+        // save settings
         
     }
 }

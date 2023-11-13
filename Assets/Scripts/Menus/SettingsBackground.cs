@@ -54,14 +54,14 @@ public class SettingsBackground : MonoBehaviour
             for (int i = 0; i < menuButtons.Length; i++)
             {
                 Color c = menuButtons[i].color;
-                menuButtons[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(-direction), Time.deltaTime * animationSpeed*1f));
+                menuButtons[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(-direction), Time.unscaledDeltaTime * animationSpeed*1f));
             }
         }
 
         //animate borders
         if ((direction > 0 && currentBorder.fillAmount < 1) || (direction < 0 && currentBorder.fillAmount > 0))
         {
-            currentBorder.fillAmount += Time.deltaTime * animationSpeed * direction;
+            currentBorder.fillAmount += Time.unscaledDeltaTime * animationSpeed * direction;
         }
         else if ((currentIndex += direction) < borders.Length && currentIndex >= 0)
         {
@@ -86,7 +86,7 @@ public class SettingsBackground : MonoBehaviour
             for (int i = 0; i < settingsControls.Length; i++)
             {
                 Color c = settingsControls[i].color;
-                settingsControls[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(direction), Time.deltaTime * animationSpeed * 1f));
+                settingsControls[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(direction), Time.unscaledDeltaTime * animationSpeed * 1f));
             }
         }
     }

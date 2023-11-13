@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ReturnBtn : EmissiveButtons
+public class ResumeBtn : EmissiveButtons
 {
-    [SerializeField] SettingsBackground settingsPanel;
-
     public override void OnPointerClick(PointerEventData eventData)
     {
+        GameManager.Instance.UnPauseGame();
+        GameManager.Instance.Player.GetInputManager().UnPausePlayer();
         base.OnPointerClick(eventData);
-        settingsPanel.DisableSelf();
     }
 }
