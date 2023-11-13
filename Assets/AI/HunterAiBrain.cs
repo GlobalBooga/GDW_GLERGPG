@@ -1,6 +1,7 @@
 using UnityEngine;
 using FMODUnity;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class HunterAiBrain : MonoBehaviour
 {
@@ -29,45 +30,46 @@ public class HunterAiBrain : MonoBehaviour
 
     private void Update()
     {
-     
-        float xSpeed = transform.InverseTransformVector(cc.velocity).x ;
-        float zSpeed = transform.InverseTransformVector(cc.velocity).z ;
-        
-        hunterAnimator.SetFloat("XSpeed", xSpeed);
+
+
+        float xSpeed = transform.InverseTransformVector(cc.velocity).x;
+        float zSpeed = transform.InverseTransformVector(cc.velocity).z;
         hunterAnimator.SetFloat("ZSpeed", zSpeed);
+
+
         if (IsPlayerInVision())
         {
-            
+
         }
+       
         Debug.Log(zSpeed);
     }
     private bool IsPlayerInVision()
     {
-      // The maximum distance of the cone
-      float coneAngle = 45f; // The angle of the cone in degrees
-      float coneDistance = 10f; // The maximum distance of the cone
+    
+      float coneAngle = 45f; 
+      float coneDistance = 10f; 
       viewAlert = Mathf.Clamp(viewAlert, 0f, 5f);
-// Loop through angles to create rays in a cone
+
         for (float angle = -coneAngle / 2f; angle <= coneAngle / 2f; angle += 5f)
         {
-            // Convert the angle to radians
+           
             float radianAngle = Mathf.Deg2Rad * angle;
 
-            // Calculate the direction vector based on the angle
+          
             Vector3 coneDirection = new Vector3(Mathf.Sin(radianAngle), 0f, Mathf.Cos(radianAngle));
 
-            // Cast a ray in the calculated direction
             Ray ray = new Ray(transform.position, transform.TransformDirection(coneDirection));
             RaycastHit hit;
-            // Visualize the ray in the editor
+         
             Debug.DrawRay(ray.origin, ray.direction * coneDistance, Color.green);
-            // Check if the ray hits something
+           
             if (Physics.Raycast(ray, out hit, coneDistance))
             {
-                // Handle the hit, for example, check if the hit object is the player
+     
                 if (hit.collider.CompareTag("Player"))
                 {
-                    // Increase the visionAlert based on the hit distance or any other criteria
+                   
                     viewAlert += daylightLevel;
                     hunterAnimator.SetFloat("viewAlert", viewAlert);
                    
@@ -75,8 +77,8 @@ public class HunterAiBrain : MonoBehaviour
                 }
                 else
                 {
-                     
                     viewAlert -= 0.01f;
+
                     hunterAnimator.SetFloat("viewAlert", viewAlert);
                 }
             }
@@ -91,31 +93,30 @@ public class HunterAiBrain : MonoBehaviour
     public void HunterIdle()
     {
         HunterAgent.stoppingDistance = 0;
-        // Define the radius around the hunter
-        float radius = 2.0f; // Adjust this value as needed
-  
+       
+        float radius = 2.0f; 
+       
+        
         hunterAnimator.SetBool("isShooting", false);
 
-        // Generate a random position within the defined radius
         Vector3 randomDestination;
         do
         {
             randomDestination = HunterAgent.transform.position +
                                 new Vector3(
                                     Random.Range(-radius, radius),
-                                    0.0f,  // Assuming your terrain is flat, so Y = 0
+                                    0.0f,  
                                     Random.Range(-radius, radius)
                                 );
         } while (!IsDestinationWithinRadius(randomDestination, HunterAgent.transform.position, radius));
 
-        // Ensure the agent is not stopped and clear the current path
         HunterAgent.isStopped = false;
         HunterAgent.ResetPath();
-        // Set the AI's destination to the random position
+        
         HunterAgent.SetDestination(randomDestination);
 
-        // Set the AI's speed to a lower value
-        HunterAgent.speed = 1.0f; // You can adjust this value as needed
+        
+        HunterAgent.speed = 1.0f; 
         
       
     
@@ -126,15 +127,12 @@ public class HunterAiBrain : MonoBehaviour
     }
     public void HunterSearching()
     {
-        //set position of noise, if noise is louder then set speed of navmesh higher, if its lower then yeah lol
-        
-        //
+    
     }
 
     public void HunterAggression()
     {
-        
-  
+   
         HunterAgent.stoppingDistance = 3;
         HunterAgent.SetDestination(PlayerLocation.position);
         HunterAgent.speed = 1.5f;
@@ -147,7 +145,10 @@ public class HunterAiBrain : MonoBehaviour
             hunterAnimator.SetBool("isShooting", true);
             //shoot player
         }
-      
+        else
+        {
+            
+        }
   
     }
 
