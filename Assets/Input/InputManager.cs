@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public float moveAmount;
     [HideInInspector] public bool sprintInput;
     [HideInInspector] public bool jumpInput;
+    [HideInInspector] public bool pause;
     
     private Vector2 movementInput;
     
@@ -32,6 +33,8 @@ public class InputManager : MonoBehaviour
             playerControls.Default.Sprint.canceled += i => sprintInput = false;
 
             playerControls.Default.Jump.performed += i => jumpInput = true;
+
+            playerControls.Menu.PauseUnpause.performed += i => pause = !pause;
         }
         
         playerControls.Enable();
@@ -47,6 +50,7 @@ public class InputManager : MonoBehaviour
         HandleMovementInput();
         HandleSprintingInput();
         HandleJumpingInput();
+        HandlePauseInput();
     }
 
     private void HandleMovementInput()
@@ -70,6 +74,22 @@ public class InputManager : MonoBehaviour
         {
             jumpInput = false;
             playerLocomotion.HandleJumping();
+        }
+    }
+
+    private void HandlePauseInput()
+    {
+        if (!GameManager.Instance) return;
+     
+        if (pause)
+        {
+            GameManager.Instance.PauseGame();
+            playerControls.Default.Disable();
+        }
+        else
+        {
+            GameManager.Instance.UnPauseGame();
+            playerControls.Default.Enable();
         }
     }
 }
