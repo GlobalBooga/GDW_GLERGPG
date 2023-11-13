@@ -47,13 +47,14 @@ public class SettingsBackground : MonoBehaviour
     {
         if (direction == 0) return; 
 
+
+        // hide/show menu btns
         if (direction > 0 || (direction < 0 && midpoint == true))
         {
-            // hide/show menu btns
             for (int i = 0; i < menuButtons.Length; i++)
             {
                 Color c = menuButtons[i].color;
-                menuButtons[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(-direction), Time.deltaTime * animationSpeed*1.5f));
+                menuButtons[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(-direction), Time.deltaTime * animationSpeed*1f));
             }
         }
 
@@ -73,10 +74,10 @@ public class SettingsBackground : MonoBehaviour
             direction = 0;
         }
 
-        if ((direction > 0 && borders[2].fillAmount >= 0.45f) || (direction < 0 && borders[2].fillAmount <= 0.55f) && !midpoint)
+        // midpoint
+        if ((direction > 0 && borders[2].fillAmount > 0f) || (direction < 0 && borders[2].fillAmount < 1f) && !midpoint)
         {
             midpoint = true;
-            Debug.Log("A");
         }
 
         // show settings
@@ -85,7 +86,7 @@ public class SettingsBackground : MonoBehaviour
             for (int i = 0; i < settingsControls.Length; i++)
             {
                 Color c = settingsControls[i].color;
-                settingsControls[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(direction), Time.deltaTime * animationSpeed * 1.5f));
+                settingsControls[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(direction), Time.deltaTime * animationSpeed * 1f));
             }
         }
     }

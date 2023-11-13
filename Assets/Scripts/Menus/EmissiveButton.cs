@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EmissiveButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerDownHandler
 {
     [SerializeField] Material hoverMaterial;
-    [SerializeField] float clickScale = 1.1f;
+    [SerializeField] float clickScale = 0.9f;
 
     Image image;
 
