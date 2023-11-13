@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
 
 
-
-
     private float time;
     private Quaternion start;
     private Quaternion end;
@@ -38,7 +36,6 @@ public class GameManager : MonoBehaviour
         end = Quaternion.Euler(sunEndRot, transform.rotation.eulerAngles.y, 0);
     }
 
-
     void Update()
     {
         if (!sun) return;
@@ -52,11 +49,17 @@ public class GameManager : MonoBehaviour
     {
         if (!pauseMenu) return;
         pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void UnPauseGame()
     {
         if (!pauseMenu) return;
         pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
