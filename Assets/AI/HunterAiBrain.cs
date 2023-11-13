@@ -18,6 +18,7 @@ public class HunterAiBrain : MonoBehaviour
     float targetZ = 5.0f; 
     public float visionRange = 10f;
     public LayerMask visionLayerMask;
+    private float zSpeed;
     private void Start()
     {
         cc = GetComponent<Rigidbody>();
@@ -29,13 +30,16 @@ public class HunterAiBrain : MonoBehaviour
     private void Update()
     {
      
-     
-   
+        float xSpeed = transform.InverseTransformVector(cc.velocity).x ;
+        float zSpeed = transform.InverseTransformVector(cc.velocity).z ;
+        
+        hunterAnimator.SetFloat("XSpeed", xSpeed);
+        hunterAnimator.SetFloat("ZSpeed", zSpeed);
         if (IsPlayerInVision())
         {
             
         }
-        Debug.Log(viewAlert);
+        Debug.Log(zSpeed);
     }
     private bool IsPlayerInVision()
     {
@@ -86,9 +90,11 @@ public class HunterAiBrain : MonoBehaviour
         
     public void HunterIdle()
     {
-       
+        HunterAgent.stoppingDistance = 0;
         // Define the radius around the hunter
         float radius = 2.0f; // Adjust this value as needed
+  
+        hunterAnimator.SetBool("isShooting", false);
 
         // Generate a random position within the defined radius
         Vector3 randomDestination;
@@ -111,8 +117,8 @@ public class HunterAiBrain : MonoBehaviour
         // Set the AI's speed to a lower value
         HunterAgent.speed = 1.0f; // You can adjust this value as needed
         
-        float zSpeed = HunterAgent.speed;
-        hunterAnimator.SetFloat("ZSpeed", zSpeed);
+      
+    
     }
     private bool IsDestinationWithinRadius(Vector3 destination, Vector3 center, float radius)
     {
@@ -128,8 +134,8 @@ public class HunterAiBrain : MonoBehaviour
     public void HunterAggression()
     {
         
-        //set stopping distance to 3
-        
+  
+        HunterAgent.stoppingDistance = 3;
         HunterAgent.SetDestination(PlayerLocation.position);
         HunterAgent.speed = 1.5f;
         // Check if the agent has reached its destination or is very close
@@ -138,11 +144,11 @@ public class HunterAiBrain : MonoBehaviour
             // The agent has reached the destination or is very close
             // Perform any actions you want when the agent reaches the target
             Debug.Log("Hunter has reached the player!");
-            
+            hunterAnimator.SetBool("isShooting", true);
             //shoot player
         }
-        float zSpeed = HunterAgent.speed;
-        hunterAnimator.SetFloat("ZSpeed", zSpeed);
+      
+  
     }
 
 }
