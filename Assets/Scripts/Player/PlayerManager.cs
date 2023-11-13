@@ -1,5 +1,5 @@
 using FMODUnity;
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,10 +14,7 @@ public class PlayerManager : MonoBehaviour
     public Image deathVignette;
     public Image deathVignetteDirt;
     public Image deadmsg;
-    float restartScreenDelay = 5;
-    float deadmsgtime;
     bool isDead;
-    //float fadeTime;
 
     float[] vignetteStages = new float[] { 0, 0.75f, 1f, 1f };
     float[] dirtStages = new float[] { 0, 0.2f, 0.5f, 1f };
@@ -42,7 +39,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        inputManager.HandleAllInputs();
+        if (!isDead) inputManager.HandleAllInputs();
 
 
         if (time > regenHitTime && regen) 
@@ -55,18 +52,6 @@ public class PlayerManager : MonoBehaviour
             if (hits == 0) regen = false;
         }
         time += Time.deltaTime;
-
-        if (isDead)
-        {
-            deadmsgtime += Time.deltaTime;
-
-            if(deadmsgtime > restartScreenDelay)
-            {
-                deadmsg.color = new Color(1, 1, 1, Mathf.Lerp(deadmsg.color.a,0, Time.unscaledDeltaTime * 0.5f));
-            }
-        }
-
-
     }
 
     private void FixedUpdate()
@@ -85,22 +70,38 @@ public class PlayerManager : MonoBehaviour
 
     public void TakeDamage()
     {
-        regen = true;
+        if (!isDead) regen = true;
         time = 0;
         if (!hurtSound.IsNull) AudioManager.instance.PlayOneShot(hurtSound, transform.position);
-        hits++;
+        hits = Mathf.Clamp(hits + 1, 0, maxHits);
         deathVignette.color = new Color(1, 1, 1, vignetteStages[hits]);
         deathVignetteDirt.color = new Color(1, 1, 1, dirtStages[hits]);
 
-        if (hits >= maxHits)
+        if (hits >= maxHits && !isDead)
         {
-            // dead
-            deadmsg.color = Color.white;
-            GameManager.Instance.PlayerDied();
+            isDead = true;
+            regen = false;
+            StartCoroutine(DeadRoutine());
             return;
         }
+    }
 
-        // otherwise just get hurt
+    IEnumerator DeadRoutine()
+    {
+        GameManager.Instance.PlayerDied();
 
+        yield return new WaitForSecondsRealtime(0.6f);
+
+        deadmsg.color = Color.white;
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        while (deadmsg.color.a > 0)
+        {
+            deadmsg.color -= new Color(0,0,0,Time.unscaledDeltaTime);
+            yield return null;
+        }
+
+        GameManager.Instance.ShowRestartMenu();
     }
 }

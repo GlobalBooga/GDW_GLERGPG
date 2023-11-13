@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -21,6 +19,8 @@ public class GameManager : MonoBehaviour
     private float time;
     private Quaternion start;
     private Quaternion end;
+
+    public static bool GameOver { get; private set; }
 
     private void Awake()
     {
@@ -69,5 +69,13 @@ public class GameManager : MonoBehaviour
     public void PlayerDied()
     {
         Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameOver = true;
+    }
+
+    public void ShowRestartMenu()
+    {
+
     }
 }
