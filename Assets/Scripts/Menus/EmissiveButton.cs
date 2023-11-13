@@ -13,7 +13,6 @@ public class EmissiveButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void Awake()
     {
-        sound = GetComponent<AudioSource>();
         image = GetComponent<Image>();
     }
 
@@ -21,6 +20,8 @@ public class EmissiveButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         transform.localScale = Vector3.one;
 
+        if (selectClip.IsNull) return;
+        AudioManager.instance.PlayOneShot(selectClip, transform.position);
         
     }
 
@@ -36,6 +37,8 @@ public class EmissiveButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
             image.material = hoverMaterial;
         }
 
+        if (selectClip.IsNull) return;
+        AudioManager.instance.PlayOneShot(selectClip, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)

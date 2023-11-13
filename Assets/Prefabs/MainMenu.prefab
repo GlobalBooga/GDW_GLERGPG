@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4923907373112837483}
   - component: {fileID: 1865300487437636115}
   - component: {fileID: 3823595279741676330}
-  - component: {fileID: 6313964482971556198}
   m_Layer: 5
   m_Name: SettingsBtn
   m_TagString: Untagged
@@ -92,105 +91,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 379695424db09174cafab6d99d37f5a0, type: 2}
   clickScale: 0.9
-  selectClip: {fileID: 8300000, guid: 57c1f44d5c7a155489538e685c3c63e5, type: 3}
-  confirmClip: {fileID: 8300000, guid: b506cffc1d5fd5549bd588b3dc0ad804, type: 3}
+  selectClip:
+    Guid:
+      Data1: -797498198
+      Data2: 1250691560
+      Data3: 368627641
+      Data4: -1406475451
+    Path: event:/Select
+  confirmClip:
+    Guid:
+      Data1: -2063362449
+      Data2: 1133938594
+      Data3: -156150391
+      Data4: 829496561
+    Path: event:/Confirm
   settingsPanel: {fileID: 6223316196408316016}
---- !u!82 &6313964482971556198
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100540272719674366}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &2334434965700550485
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +159,6 @@ GameObject:
   - component: {fileID: 2345758536749210455}
   - component: {fileID: 1723786271537213148}
   - component: {fileID: 867255027373863479}
-  - component: {fileID: 8721395870773932451}
   m_Layer: 5
   m_Name: QuitBtn
   m_TagString: Untagged
@@ -324,104 +238,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 5a0161bb55d2c694fae035fd2231ed88, type: 2}
   clickScale: 0.9
-  selectClip: {fileID: 8300000, guid: 57c1f44d5c7a155489538e685c3c63e5, type: 3}
-  confirmClip: {fileID: 8300000, guid: b506cffc1d5fd5549bd588b3dc0ad804, type: 3}
---- !u!82 &8721395870773932451
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3731122869167921061}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  selectClip:
+    Guid:
+      Data1: -797498198
+      Data2: 1250691560
+      Data3: 368627641
+      Data4: -1406475451
+    Path: event:/Select
+  confirmClip:
+    Guid:
+      Data1: -2063362449
+      Data2: 1133938594
+      Data3: -156150391
+      Data4: 829496561
+    Path: event:/Confirm
 --- !u!1 &4563811188543044429
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 255.93648}
+  m_AnchoredPosition: {x: 0, y: 272}
   m_SizeDelta: {x: 445.1627, y: 181.8741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8594897629378574758
@@ -569,7 +399,6 @@ GameObject:
   - component: {fileID: 7837502055253955561}
   - component: {fileID: 8076204316529797598}
   - component: {fileID: 3049621371646733742}
-  - component: {fileID: 5678421574536202315}
   m_Layer: 5
   m_Name: PlayBtn
   m_TagString: Untagged
@@ -649,39 +478,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 4c149a645d3572147bebfeda3da52b3a, type: 2}
   clickScale: 0.9
-  selectClip: {fileID: 8300000, guid: 57c1f44d5c7a155489538e685c3c63e5, type: 3}
-  confirmClip: {fileID: 8300000, guid: b506cffc1d5fd5549bd588b3dc0ad804, type: 3}
---- !u!114 &5678421574536202315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6166000227460797968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
+  selectClip:
+    Guid:
+      Data1: -797498198
+      Data2: 1250691560
+      Data3: 368627641
+      Data4: -1406475451
+    Path: event:/Select
+  confirmClip:
     Guid:
       Data1: -2063362449
       Data2: 1133938594
       Data3: -156150391
       Data4: 829496561
     Path: event:/Confirm
-  Event: 
-  PlayEvent: 17
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1001 &8910465926867766007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -810,10 +620,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: selectClip.Path
+      value: event:/Select
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: confirmClip.Path
+      value: event:/Confirm
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: selectClip.Guid.Data1
+      value: -797498198
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: selectClip.Guid.Data2
+      value: 1250691560
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: selectClip.Guid.Data3
+      value: 368627641
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: selectClip.Guid.Data4
+      value: -1406475451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: confirmClip.Guid.Data1
+      value: -2063362449
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: confirmClip.Guid.Data2
+      value: 1133938594
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: confirmClip.Guid.Data3
+      value: -156150391
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772178097738841867, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: confirmClip.Guid.Data4
+      value: 829496561
+      objectReference: {fileID: 0}
     - target: {fileID: 8153317708535999577, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
       propertyPath: menuTitle
       value: 
       objectReference: {fileID: 7243244375751704720}
+    - target: {fileID: 8153317708535999577, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: titleEnd.y
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153317708535999577, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
+      propertyPath: titleStart.y
+      value: 272
+      objectReference: {fileID: 0}
     - target: {fileID: 8153317708535999577, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
       propertyPath: menuButtons.Array.data[0]
       value: 
@@ -826,7 +684,8 @@ PrefabInstance:
       propertyPath: menuButtons.Array.data[2]
       value: 
       objectReference: {fileID: 1723786271537213148}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8253462205914727850, guid: de69519971c1aa74d99b4ed9f9a7cda8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
