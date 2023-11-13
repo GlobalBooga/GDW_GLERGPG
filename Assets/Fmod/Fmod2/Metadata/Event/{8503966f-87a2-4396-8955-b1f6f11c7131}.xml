@@ -92,6 +92,9 @@
 		<property name="length">
 			<value>0.99845804988662135</value>
 		</property>
+		<property name="startOffset">
+			<value>2.5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{f0245ac3-eb7e-458c-9749-78bd88e4fd56}</destination>
 		</relationship>
