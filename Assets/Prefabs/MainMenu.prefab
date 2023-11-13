@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 6992718185946281642}
   - component: {fileID: 2345758536749210455}
   - component: {fileID: 1723786271537213148}
-  - component: {fileID: 867255027373863479}
+  - component: {fileID: 6231264489398532631}
   m_Layer: 5
   m_Name: QuitBtn
   m_TagString: Untagged
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &867255027373863479
+--- !u!114 &6231264489398532631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3731122869167921061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b52e1b58d0c2f5042a53570789544473, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a8af1efffbc35d4494c3b5e57e1a617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 5a0161bb55d2c694fae035fd2231ed88, type: 2}
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 8294882039687229330}
   - component: {fileID: 7837502055253955561}
   - component: {fileID: 8076204316529797598}
-  - component: {fileID: 3049621371646733742}
+  - component: {fileID: 5431366864307270059}
   m_Layer: 5
   m_Name: PlayBtn
   m_TagString: Untagged
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3049621371646733742
+--- !u!114 &5431366864307270059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -473,7 +473,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6166000227460797968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b52e1b58d0c2f5042a53570789544473, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d53df4b7b5306347826721f378f8584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 4c149a645d3572147bebfeda3da52b3a, type: 2}
@@ -492,6 +492,7 @@ MonoBehaviour:
       Data3: -156150391
       Data4: 829496561
     Path: event:/Confirm
+  levelIndex: 1
 --- !u!1001 &8910465926867766007
 PrefabInstance:
   m_ObjectHideFlags: 0
