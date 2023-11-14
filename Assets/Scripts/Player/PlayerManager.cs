@@ -1,3 +1,4 @@
+using Cinemachine;
 using FMODUnity;
 using System.Collections;
 using UnityEngine;

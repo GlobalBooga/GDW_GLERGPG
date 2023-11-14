@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class InputManager : MonoBehaviour
     public PlayerControls playerControls;
     private PlayerLocomotion playerLocomotion;
     private AnimatorManager animatorManager;
+    public CinemachineFreeLook freelook;
 
     private void Start()
     {
@@ -98,10 +100,12 @@ public class InputManager : MonoBehaviour
     public void PausePlayer()
     {
         playerControls.Default.Disable();
+        freelook.enabled = false;
     }
 
     public void UnPausePlayer()
     {
+        freelook.enabled = true;
         playerControls.Default.Enable();
     }
 }

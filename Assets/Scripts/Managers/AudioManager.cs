@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
+
     private Bus uiBus;
     private Bus ambienceBus;
     private Bus playerBus;
@@ -35,6 +36,11 @@ public class AudioManager : MonoBehaviour
         masterVolume = PlayerPrefs.GetFloat("Volume", masterVolume);
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void Update()
     {
         masterBus.setVolume(masterVolume);
@@ -46,5 +52,11 @@ public class AudioManager : MonoBehaviour
     public void PlayOneShot(EventReference sound, Vector3 pos)
     {
         RuntimeManager.PlayOneShot(sound, pos);
+    }
+
+
+    public EventInstance CreateInstance(EventReference evtRef)
+    {
+        return RuntimeManager.CreateInstance(evtRef);
     }
 }

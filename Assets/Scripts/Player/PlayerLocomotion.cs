@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using System;
 using UnityEngine;
 
@@ -32,6 +34,9 @@ public class PlayerLocomotion : MonoBehaviour
     private Rigidbody rb;
     private Transform cam;
 
+    public EventReference footstepSound;
+    EventInstance footstepEvt;
+
     private void Start()
     {
         inputManager = GetComponent<InputManager>();
@@ -40,6 +45,8 @@ public class PlayerLocomotion : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
         cam = Camera.main.transform;
+
+        footstepEvt = AudioManager.instance.CreateInstance(footstepSound);
     }
 
     public void HandleAllMovement()
@@ -50,6 +57,7 @@ public class PlayerLocomotion : MonoBehaviour
         
         HandleMovement();
         HandleRotation();
+        HandleFootsteps();
     }
 
     private void HandleMovement()
@@ -141,5 +149,31 @@ public class PlayerLocomotion : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, 0.2f);
+    }
+
+    void HandleFootsteps()
+    {
+        if (isSprinting) footstepEvt.setPitch(0.8f);
+        else footstepEvt.setPitch(2);
+
+        if (moveDirection != Vector3.zero && isGrounded)
+        {
+            PLAYBACK_STATE ps;
+            footstepEvt.getPlaybackState(out ps);
+            if (ps.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                footstepEvt.start();
+            }
+        }
+        else
+        {
+            footstepEvt.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        footstepEvt.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        footstepEvt.release();
     }
 }

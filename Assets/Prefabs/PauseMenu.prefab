@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4869617975444651880}
   - component: {fileID: 7964302635092576164}
   - component: {fileID: 5269566911570686403}
-  - component: {fileID: 3297395562385605931}
+  - component: {fileID: 8406080521325161278}
   m_Layer: 5
   m_Name: QuitBtn
   m_TagString: Untagged
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3297395562385605931
+--- !u!114 &8406080521325161278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5530777574881454163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b52e1b58d0c2f5042a53570789544473, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a8af1efffbc35d4494c3b5e57e1a617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: 5a0161bb55d2c694fae035fd2231ed88, type: 2}
