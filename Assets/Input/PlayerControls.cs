@@ -62,6 +62,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Hack"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2d3dede-5246-4f17-9bf5-d5aa757cd866"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -229,6 +238,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32f30ffc-4b28-40b3-b69c-8538e32ced04"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -269,6 +289,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Default_Sprint = m_Default.FindAction("Sprint", throwIfNotFound: true);
         m_Default_Jump = m_Default.FindAction("Jump", throwIfNotFound: true);
         m_Default_Look = m_Default.FindAction("Look", throwIfNotFound: true);
+        m_Default_Hack = m_Default.FindAction("Hack", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_PauseUnpause = m_Menu.FindAction("PauseUnpause", throwIfNotFound: true);
@@ -337,6 +358,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Sprint;
     private readonly InputAction m_Default_Jump;
     private readonly InputAction m_Default_Look;
+    private readonly InputAction m_Default_Hack;
     public struct DefaultActions
     {
         private @PlayerControls m_Wrapper;
@@ -345,6 +367,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Default_Sprint;
         public InputAction @Jump => m_Wrapper.m_Default_Jump;
         public InputAction @Look => m_Wrapper.m_Default_Look;
+        public InputAction @Hack => m_Wrapper.m_Default_Hack;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -366,6 +389,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @Hack.started += instance.OnHack;
+            @Hack.performed += instance.OnHack;
+            @Hack.canceled += instance.OnHack;
         }
 
         private void UnregisterCallbacks(IDefaultActions instance)
@@ -382,6 +408,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @Hack.started -= instance.OnHack;
+            @Hack.performed -= instance.OnHack;
+            @Hack.canceled -= instance.OnHack;
         }
 
         public void RemoveCallbacks(IDefaultActions instance)
@@ -451,6 +480,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnHack(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

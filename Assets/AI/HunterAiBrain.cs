@@ -37,7 +37,7 @@ public class HunterAiBrain : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.GameOver) return;
+        if (GameManager.GameOver || GameManager.GamePaused) return;
 
         float xSpeed = transform.InverseTransformVector(cc.velocity).x;
         float zSpeed = transform.InverseTransformVector(cc.velocity).z;

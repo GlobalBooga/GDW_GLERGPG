@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private Quaternion end;
 
     public static bool GameOver { get; private set; }
+    public static bool GamePaused { get; private set; }
 
     private void Awake()
     {
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         if (!pauseMenu) return;
+        GamePaused = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
@@ -60,7 +62,7 @@ public class GameManager : MonoBehaviour
     public void UnPauseGame()
     {
         if (!pauseMenu) return;
-
+        GamePaused = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
