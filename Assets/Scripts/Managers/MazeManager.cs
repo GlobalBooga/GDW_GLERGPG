@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -5,9 +6,10 @@ public class MazeManager : MonoBehaviour
 {
     public Transform startObject;
     public Transform endObject;
-   // public Text timerText;
-  //  public Text startMessageText;
+    public GameObject pressStartImages;
+    public Image[] timerImages;
 
+    private int currentImageIndex = 0;
     private bool gameStarted = false;
     private bool gameEnded = false;
     private float timer = 10f;
@@ -18,9 +20,8 @@ public class MazeManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        //  startMessageText.text = "Press Enter to Start";
-        // startMessageText.gameObject.SetActive(true);
-        //  timerText.gameObject.SetActive(false);
+        pressStartImages.gameObject.SetActive(true);
+      
     }
 
     public void OnEnterKeyPressed()
@@ -30,7 +31,19 @@ public class MazeManager : MonoBehaviour
             StartMaze();
         }
     }
+    IEnumerator TimerUpdates()
+    {
+        for(int i = 0; i < 10; i++) { }
+        {
+            yield return new WaitForSecondsRealtime(1);
+            UpdateImage();
+        }
 
+    }
+    void UpdateImage()
+    {
+        currentImageIndex = (currentImageIndex + 1) % timerImages.Length;
+    }
     void Update()
     {          
 
@@ -38,8 +51,6 @@ public class MazeManager : MonoBehaviour
         {
 
             timer -= Time.deltaTime;
-          //  timerText.text = "Time: " + timer.ToString("F1");
-
             if (timer <= 0)
             {
                 EndGame(false);
@@ -49,10 +60,10 @@ public class MazeManager : MonoBehaviour
 
     void StartMaze()
     {
+        StartCoroutine(TimerUpdates());        
         gameStarted = true;
         gameEnded = false;
-     //   startMessageText.gameObject.SetActive(false);
-     //   timerText.gameObject.SetActive(true);
+        pressStartImages.gameObject.SetActive(false);
         timer = 10f;
         WarpCursorToStartObject();
        
@@ -62,10 +73,8 @@ public class MazeManager : MonoBehaviour
         timer = 10f;
         gameEnded = false;
         gameStarted = false;
-     //   startMessageText.gameObject.SetActive(true);
-    //    timerText.gameObject.SetActive(false);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        pressStartImages.gameObject.SetActive(true);
+
     }
     public void OnEndObjectEnter()
     {
@@ -86,27 +95,25 @@ public class MazeManager : MonoBehaviour
     void EndGame(bool playerWins)
     {
         gameEnded = true;
-
+        StopCoroutine(TimerUpdates());
         if (playerWins)
         {
             Debug.Log("You won!");
-            onGameEnd?.Invoke(true);
+            onGameEnd?.Invoke(true);        
         }
         else
         {
             Debug.Log("Game over");
-            onGameEnd?.Invoke(false);
+            onGameEnd?.Invoke(false);      
         }
     }
     void WarpCursorToStartObject()
     {
-        Vector2 startObjectScreenPos = new Vector2(startObject.position.x, startObject.position.y);
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(startObject.position);
 
-
-        if (startObjectScreenPos.x >= 0 && startObjectScreenPos.x <= Screen.width
-            && startObjectScreenPos.y >= 0 && startObjectScreenPos.y <= Screen.height)
+        if (screenPos.x >= 0 && screenPos.x <= Screen.width && screenPos.y >= 0 && screenPos.y <= Screen.height)
         {
-            Mouse.current.WarpCursorPosition(startObjectScreenPos);
+            Mouse.current.WarpCursorPosition(new Vector2(screenPos.x, screenPos.y));
         }
     }
     public void SetOnGameEndCallback(System.Action<bool> callback)
