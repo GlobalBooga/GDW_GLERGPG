@@ -413,6 +413,21 @@ MonoBehaviour:
   visionLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  shootSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  walkSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  shootDelay: 2
 --- !u!95 &6550787690170444779
 Animator:
   serializedVersion: 5

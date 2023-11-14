@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using FMODUnity;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class HunterAiBrain : MonoBehaviour
 {
@@ -37,12 +39,15 @@ public class HunterAiBrain : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.GameOver) return;
+        if (GameManager.GameOver || GameManager.GamePaused) return;
 
-        float xSpeed = transform.InverseTransformVector(cc.velocity).x;
-        float zSpeed = transform.InverseTransformVector(cc.velocity).z;
-        hunterAnimator.SetFloat("ZSpeed", zSpeed);
 
+        if (HunterAgent.isStopped)
+        {
+            hunterAnimator.SetFloat("ZSpeed", 0);
+        }
+      
+Debug.Log(zSpeed);
 
         if (IsPlayerInVision())
         {
@@ -53,6 +58,12 @@ public class HunterAiBrain : MonoBehaviour
 
         timeSinceLastShot += Time.deltaTime;
     }
+
+    private void LateUpdate()
+    {
+        
+    }
+
     private bool IsPlayerInVision()
     {
     
@@ -105,7 +116,7 @@ public class HunterAiBrain : MonoBehaviour
        
         float radius = 2.0f; 
        
-        
+        hunterAnimator.SetFloat("ZSpeed", 1);
         hunterAnimator.SetBool("isShooting", false);
 
         Vector3 randomDestination;
@@ -140,7 +151,7 @@ public class HunterAiBrain : MonoBehaviour
 
     public void HunterAggression()
     {
-   
+        hunterAnimator.SetFloat("ZSpeed", 3);
         HunterAgent.stoppingDistance = 3;
         HunterAgent.SetDestination(PlayerLocation.position);
         HunterAgent.speed = 1.5f;
