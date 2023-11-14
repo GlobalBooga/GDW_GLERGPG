@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        //if (!pauseMenu) return;
+        if (!pauseMenu) return;
         GamePaused = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0;
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void UnPauseGame()
     {
-        //if (!pauseMenu) return;
+        if (!pauseMenu) return;
         GamePaused = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
