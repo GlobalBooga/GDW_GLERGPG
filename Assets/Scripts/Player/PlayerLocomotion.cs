@@ -57,7 +57,6 @@ public class PlayerLocomotion : MonoBehaviour
         
         HandleMovement();
         HandleRotation();
-        HandleFootsteps();
     }
 
     private void HandleMovement()
@@ -151,12 +150,11 @@ public class PlayerLocomotion : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 0.2f);
     }
 
-    void HandleFootsteps()
+    public void HandleFootsteps()
     {
         if (isSprinting) footstepEvt.setPitch(0.8f);
         else footstepEvt.setPitch(2);
-
-        if (moveDirection != Vector3.zero && isGrounded)
+        if (moveDirection != Vector3.zero && isGrounded && !GameManager.GamePaused && !GameManager.GameOver)
         {
             PLAYBACK_STATE ps;
             footstepEvt.getPlaybackState(out ps);

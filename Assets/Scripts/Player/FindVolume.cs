@@ -1,9 +1,4 @@
 using FMOD;
-using FMOD.Studio;
-using FMODUnity;
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class FindVolume : MonoBehaviour
 {

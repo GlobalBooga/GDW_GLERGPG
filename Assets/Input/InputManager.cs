@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour
         animatorManager = GetComponent<AnimatorManager>();
     }
 
-    private void OnEnable()
+    private void Awake()
     {
         if (playerControls == null)
         {
@@ -36,7 +36,7 @@ public class InputManager : MonoBehaviour
 
             playerControls.Default.Jump.performed += i => jumpInput = true;
 
-            playerControls.Menu.PauseUnpause.performed += i => pause = !pause;
+            playerControls.Menu.PauseUnpause.performed += i => HandlePauseInput();
         }
         
         playerControls.Enable();
@@ -52,7 +52,6 @@ public class InputManager : MonoBehaviour
         HandleMovementInput();
         HandleSprintingInput();
         HandleJumpingInput();
-        HandlePauseInput();
     }
 
     private void HandleMovementInput()
@@ -82,7 +81,10 @@ public class InputManager : MonoBehaviour
     private void HandlePauseInput()
     {
         if (!GameManager.Instance) return;
-     
+        if (GameManager.GamePaused && pause == false) return;
+
+        pause = !pause;
+
         if (pause)
         {
             GameManager.Instance.PauseGame();

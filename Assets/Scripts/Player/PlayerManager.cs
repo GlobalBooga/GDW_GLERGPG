@@ -37,10 +37,14 @@ public class PlayerManager : MonoBehaviour
         inputManager = GetComponent<InputManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
     }
-
+    
     private void Update()
     {
         if (!isDead) inputManager.HandleAllInputs();
+        playerLocomotion.HandleFootsteps();
+
+        if (GameManager.GamePaused || GameManager.GameOver) return;
+
 
 
         if (time > regenHitTime && regen) 

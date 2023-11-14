@@ -82,4 +82,20 @@ public class GameManager : MonoBehaviour
     {
         gameOverMenu.SetActive(true);
     }
+
+    public void FreezeGame()
+    {
+        GamePaused = true;
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void UnFreezeGame()
+    {
+        GamePaused = false;
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 }

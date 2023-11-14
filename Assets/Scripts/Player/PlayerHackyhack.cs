@@ -47,6 +47,7 @@ public class PlayerHackyhack : MonoBehaviour
 
     void Hack()
     {
-        hackGame.SetActive(true);
+        if (hackPrompt.activeInHierarchy)
+            hackGame.SetActive(true);
     }
 }
