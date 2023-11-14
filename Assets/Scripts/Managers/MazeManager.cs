@@ -18,10 +18,9 @@ public class MazeManager : MonoBehaviour
 
     void OnEnable()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        pressStartImages.gameObject.SetActive(true);
-      
+        GameManager.Instance.Player.GetInputManager().playerControls.Menu.StartMinigame.performed += ctx => OnEnterKeyPressed();
+        GameManager.Instance.Player.GetInputManager().PausePlayer();
+        GameManager.Instance.PauseGame();
     }
 
     public void OnEnterKeyPressed()
@@ -31,12 +30,13 @@ public class MazeManager : MonoBehaviour
             StartMaze();
         }
     }
+    
     IEnumerator TimerUpdates()
     {
-        for(int i = 0; i < 10; i++) { }
+        for(int i = 0; i < 10; i++) 
         {
-            yield return new WaitForSecondsRealtime(1);
             UpdateImage();
+            yield return new WaitForSecondsRealtime(1);
         }
 
     }
@@ -89,9 +89,8 @@ public class MazeManager : MonoBehaviour
         {            
             WarpCursorToStartObject();
         }
-
-
     }
+
     void EndGame(bool playerWins)
     {
         gameEnded = true;
@@ -119,6 +118,5 @@ public class MazeManager : MonoBehaviour
     public void SetOnGameEndCallback(System.Action<bool> callback)
     {
         onGameEnd = callback;
-
     }
 }

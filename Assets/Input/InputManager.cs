@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
     
     private Vector2 movementInput;
     
-    private PlayerControls playerControls;
+    public PlayerControls playerControls;
     private PlayerLocomotion playerLocomotion;
     private AnimatorManager animatorManager;
 
@@ -92,6 +92,8 @@ public class InputManager : MonoBehaviour
             UnPausePlayer();
         }
     }
+
+
 
     public void PausePlayer()
     {

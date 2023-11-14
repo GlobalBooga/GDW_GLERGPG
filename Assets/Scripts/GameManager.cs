@@ -1,19 +1,19 @@
+using FMODUnity;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [Header("Sun Settings")]
     public Light sun;
     public int secondsTillNoon = 900;
     public float sunStartRot = -30f;
     public float sunEndRot = 90f;
     public AnimationCurve sunRiseCurve = AnimationCurve.EaseInOut(0,0,1,1);
 
-    [Header("Canvas Settings")]
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
+    public EventReference gameOverSound;
 
     public PlayerManager Player;
 
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        if (!pauseMenu) return;
+        //if (!pauseMenu) return;
         GamePaused = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0;
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void UnPauseGame()
     {
-        if (!pauseMenu) return;
+        //if (!pauseMenu) return;
         GamePaused = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied()
     {
+        AudioManager.instance.PlayOneShot(gameOverSound, Player.transform.position);
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

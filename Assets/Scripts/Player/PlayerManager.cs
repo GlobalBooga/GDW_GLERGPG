@@ -47,7 +47,6 @@ public class PlayerManager : MonoBehaviour
             hits = Mathf.Clamp(hits - 1, 0, maxHits);
             deathVignette.color = new Color(1, 1, 1, vignetteStages[hits]);
             deathVignetteDirt.color = new Color(1, 1, 1, dirtStages[hits]);
-            Debug.Log("regen hit");
 
             if (hits == 0) regen = false;
         }

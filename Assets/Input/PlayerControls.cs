@@ -264,6 +264,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StartMinigame"",
+                    ""type"": ""Button"",
+                    ""id"": ""006e4b33-b251-4d2e-8971-629f939fd06a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -275,6 +284,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PauseUnpause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9d14690-9327-4c44-8560-242e0477a589"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartMinigame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -293,6 +313,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_PauseUnpause = m_Menu.FindAction("PauseUnpause", throwIfNotFound: true);
+        m_Menu_StartMinigame = m_Menu.FindAction("StartMinigame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -433,11 +454,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Menu;
     private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
     private readonly InputAction m_Menu_PauseUnpause;
+    private readonly InputAction m_Menu_StartMinigame;
     public struct MenuActions
     {
         private @PlayerControls m_Wrapper;
         public MenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @PauseUnpause => m_Wrapper.m_Menu_PauseUnpause;
+        public InputAction @StartMinigame => m_Wrapper.m_Menu_StartMinigame;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -450,6 +473,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PauseUnpause.started += instance.OnPauseUnpause;
             @PauseUnpause.performed += instance.OnPauseUnpause;
             @PauseUnpause.canceled += instance.OnPauseUnpause;
+            @StartMinigame.started += instance.OnStartMinigame;
+            @StartMinigame.performed += instance.OnStartMinigame;
+            @StartMinigame.canceled += instance.OnStartMinigame;
         }
 
         private void UnregisterCallbacks(IMenuActions instance)
@@ -457,6 +483,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PauseUnpause.started -= instance.OnPauseUnpause;
             @PauseUnpause.performed -= instance.OnPauseUnpause;
             @PauseUnpause.canceled -= instance.OnPauseUnpause;
+            @StartMinigame.started -= instance.OnStartMinigame;
+            @StartMinigame.performed -= instance.OnStartMinigame;
+            @StartMinigame.canceled -= instance.OnStartMinigame;
         }
 
         public void RemoveCallbacks(IMenuActions instance)
@@ -485,5 +514,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IMenuActions
     {
         void OnPauseUnpause(InputAction.CallbackContext context);
+        void OnStartMinigame(InputAction.CallbackContext context);
     }
 }

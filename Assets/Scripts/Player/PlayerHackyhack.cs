@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHackyhack : MonoBehaviour
 {
     public float range = 4f;
-    public Image hackPrompt;
+    public GameObject hackPrompt;
     public GameObject hackGame;
     public LayerMask whatIsEnemy;
 
@@ -16,10 +13,11 @@ public class PlayerHackyhack : MonoBehaviour
     Camera maincam;
     InputManager inputManager;
 
-    private void Awake()
+    private void Start()
     {
         maincam = Camera.main;
         inputManager = GetComponent<InputManager>();
+        inputManager.playerControls.Default.Hack.performed += ctx => Hack();
     }
 
     // Update is called once per frame
@@ -35,10 +33,9 @@ public class PlayerHackyhack : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position, forwards, out hit, range, whatIsEnemy))
             {
-                hackGame.SetActive(true);
-                GameManager.Instance.PauseGame();
-                inputManager.PausePlayer();
+                hackPrompt.SetActive(true);
             }
+            else hackPrompt.SetActive(false);
             
         }
     }
@@ -46,5 +43,10 @@ public class PlayerHackyhack : MonoBehaviour
     Vector3 MainCamFwd()
     {
         return maincam.transform.forward;
+    }
+
+    void Hack()
+    {
+        hackGame.SetActive(true);
     }
 }
