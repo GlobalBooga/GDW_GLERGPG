@@ -19,18 +19,18 @@ public class MazeManager : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.Player.GetInputManager().playerControls.Menu.StartMinigame.performed += ctx => OnEnterKeyPressed();
-        GameManager.Instance.Player.GetInputManager().playerControls.Menu.PauseUnpause.performed += ctx => 
-        { 
-            transform.parent.gameObject.SetActive(false);
-            GameManager.Instance.UnFreezeGame();
-            GameManager.Instance.Player.GetInputManager().UnPausePlayer();
-        };
+        
     }
 
     void OnEnable()
     {
         GameManager.Instance.Player.GetInputManager().PausePlayer();
         GameManager.Instance.FreezeGame();
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.UnFreezeGame();
+        GameManager.Instance.Player.GetInputManager().UnPausePlayer();
     }
 
     public void OnEnterKeyPressed()

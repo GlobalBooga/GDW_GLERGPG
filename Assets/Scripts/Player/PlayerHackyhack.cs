@@ -18,6 +18,11 @@ public class PlayerHackyhack : MonoBehaviour
         maincam = Camera.main;
         inputManager = GetComponent<InputManager>();
         inputManager.playerControls.Default.Hack.performed += ctx => Hack();
+        inputManager.playerControls.Menu.PauseUnpause.performed += ctx =>
+        {
+            if (hackGame.activeInHierarchy)
+                hackGame.SetActive(false);
+        };
     }
 
     // Update is called once per frame
