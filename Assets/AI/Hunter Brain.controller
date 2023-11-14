@@ -279,7 +279,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.3
+  m_ExitTime: 0.98
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -430,7 +430,7 @@ AnimatorStateMachine:
     m_Position: {x: 240, y: -140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6269612078092092055}
-    m_Position: {x: 370, y: -290, z: 0}
+    m_Position: {x: 360, y: -280, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -502,7 +502,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Idle/Looking
-  m_Speed: 0.54
+  m_Speed: 0.69
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2965913205438843505}

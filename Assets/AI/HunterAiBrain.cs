@@ -13,7 +13,7 @@ public class HunterAiBrain : MonoBehaviour
     //float value for navmeshagent speed
     private float viewAlert = 0.0f;
     //scaler for detecting how long the player is in view
-    private float daylightLevel = 0.03f;
+    private float daylightLevel = 4f;
     //Amount of daylight, tied to time of day
     private Rigidbody cc;
     float targetX = 10.0f; // Replace with your desired global X coordinate
@@ -67,7 +67,7 @@ Debug.Log(zSpeed);
     private bool IsPlayerInVision()
     {
     
-      float coneAngle = 45f; 
+      float coneAngle = 110f; 
       float coneDistance = 10f; 
       viewAlert = Mathf.Clamp(viewAlert, 0f, 5f);
 
@@ -114,7 +114,7 @@ Debug.Log(zSpeed);
     {
         HunterAgent.stoppingDistance = 0;
        
-        float radius = 2.0f; 
+        float radius = 5f; 
        
         hunterAnimator.SetFloat("ZSpeed", 1);
         hunterAnimator.SetBool("isShooting", false);
@@ -136,7 +136,7 @@ Debug.Log(zSpeed);
         HunterAgent.SetDestination(randomDestination);
 
         
-        HunterAgent.speed = 1.0f; 
+        HunterAgent.speed = 2.0f; 
       
     
     }
