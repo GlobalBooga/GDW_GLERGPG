@@ -1,7 +1,6 @@
 using UnityEngine;
 using FMODUnity;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 public class HunterAiBrain : MonoBehaviour
 {
@@ -20,6 +19,14 @@ public class HunterAiBrain : MonoBehaviour
     public float visionRange = 10f;
     public LayerMask visionLayerMask;
     private float zSpeed;
+
+
+    public EventReference shootSound;
+    public EventReference walkSound;
+    public float shootDelay = 2f;
+    float timeSinceLastShot = 2;
+
+
     private void Start()
     {
         cc = GetComponent<Rigidbody>();
@@ -30,7 +37,7 @@ public class HunterAiBrain : MonoBehaviour
 
     private void Update()
     {
-
+        if (GameManager.GameOver || GameManager.GamePaused) return;
 
         float xSpeed = transform.InverseTransformVector(cc.velocity).x;
         float zSpeed = transform.InverseTransformVector(cc.velocity).z;
@@ -41,8 +48,10 @@ public class HunterAiBrain : MonoBehaviour
         {
 
         }
-       
-        Debug.Log(zSpeed);
+
+        //Debug.Log(zSpeed);
+
+        timeSinceLastShot += Time.deltaTime;
     }
     private bool IsPlayerInVision()
     {
@@ -117,7 +126,6 @@ public class HunterAiBrain : MonoBehaviour
 
         
         HunterAgent.speed = 1.0f; 
-        
       
     
     }
@@ -139,11 +147,24 @@ public class HunterAiBrain : MonoBehaviour
         // Check if the agent has reached its destination or is very close
         if (!HunterAgent.pathPending && HunterAgent.remainingDistance <= HunterAgent.stoppingDistance)
         {
-            // The agent has reached the destination or is very close
-            // Perform any actions you want when the agent reaches the target
-            Debug.Log("Hunter has reached the player!");
-            hunterAnimator.SetBool("isShooting", true);
-            //shoot player
+            if (timeSinceLastShot > shootDelay)
+            {
+                timeSinceLastShot = 0;
+
+                // The agent has reached the destination or is very close
+                // Perform any actions you want when the agent reaches the target
+                //Debug.Log("Hunter has reached the player!");
+                hunterAnimator.SetBool("isShooting", true);
+                //shoot player
+
+                if (!shootSound.IsNull)
+                {
+                    AudioManager.instance.PlayOneShot(shootSound, transform.position);
+                }
+
+                // damage the player
+                GameManager.Instance.Player.TakeDamage();
+            }
         }
         else
         {

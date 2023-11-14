@@ -8,10 +8,15 @@ public class SettingsBackground : MonoBehaviour
     [SerializeField] float animationSpeed = 3;
     [SerializeField] Image[] menuButtons;
     [SerializeField] Image[] settingsControls;
+    [SerializeField] RectTransform menuTitle;
     bool midpoint;
     Image currentBorder;
     int currentIndex;
     int direction = 0;
+    [SerializeField] Vector3 titleStart;
+    [SerializeField] Vector3 titleEnd;
+    AnimationCurve titleCurve = AnimationCurve.EaseInOut(0,0,1,1);
+    float titleAnimTime;
 
     private void Awake()
     {
@@ -32,6 +37,7 @@ public class SettingsBackground : MonoBehaviour
         currentBorder = borders[currentIndex];
         direction = 1;
         midpoint = false;
+        titleAnimTime = 0f;
     }
 
     public void DisableSelf()
@@ -40,6 +46,7 @@ public class SettingsBackground : MonoBehaviour
         currentBorder = borders[currentIndex];
         direction = -1;
         midpoint = false;
+        titleAnimTime = 0f;
     }
 
     // Update is called once per frame
@@ -47,20 +54,21 @@ public class SettingsBackground : MonoBehaviour
     {
         if (direction == 0) return; 
 
+
+        // hide/show menu btns
         if (direction > 0 || (direction < 0 && midpoint == true))
         {
-            // hide/show menu btns
             for (int i = 0; i < menuButtons.Length; i++)
             {
                 Color c = menuButtons[i].color;
-                menuButtons[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(-direction), Time.deltaTime * animationSpeed*1.5f));
+                menuButtons[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(-direction), Time.unscaledDeltaTime * animationSpeed*1f));
             }
         }
 
         //animate borders
         if ((direction > 0 && currentBorder.fillAmount < 1) || (direction < 0 && currentBorder.fillAmount > 0))
         {
-            currentBorder.fillAmount += Time.deltaTime * animationSpeed * direction;
+            currentBorder.fillAmount += Time.unscaledDeltaTime * animationSpeed * direction;
         }
         else if ((currentIndex += direction) < borders.Length && currentIndex >= 0)
         {
@@ -73,20 +81,25 @@ public class SettingsBackground : MonoBehaviour
             direction = 0;
         }
 
-        if ((direction > 0 && borders[2].fillAmount >= 0.45f) || (direction < 0 && borders[2].fillAmount <= 0.55f) && !midpoint)
+        // midpoint
+        if ((direction > 0 && borders[2].fillAmount > 0f) || (direction < 0 && borders[2].fillAmount < 1f) && !midpoint)
         {
             midpoint = true;
-            Debug.Log("A");
         }
 
-        // show settings
+        // hide/show settings
         if (direction < 0 || (direction > 0 && midpoint == true))
         {
             for (int i = 0; i < settingsControls.Length; i++)
             {
                 Color c = settingsControls[i].color;
-                settingsControls[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(direction), Time.deltaTime * animationSpeed * 1.5f));
+                settingsControls[i].color = new Color(c.r, c.g, c.b, Mathf.Lerp(c.a, Mathf.Clamp01(direction), Time.unscaledDeltaTime * animationSpeed * 1f));
             }
         }
+
+        // move title up and down
+        if (!menuTitle || titleAnimTime > 1) return;
+        titleAnimTime += Time.unscaledDeltaTime * animationSpeed * 0.5f;
+        menuTitle.localPosition = Vector3.Lerp(direction > 0 ? titleStart : titleEnd, direction > 0 ? titleEnd : titleStart, titleCurve.Evaluate(titleAnimTime));
     }
 }

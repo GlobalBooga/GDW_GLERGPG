@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 3504977360425056020}
   - component: {fileID: 3281739423414858234}
   - component: {fileID: 3241591726120098437}
+  - component: {fileID: 4179116134183004278}
   m_Layer: 0
   m_Name: TempPlayer
   m_TagString: Player
@@ -351,12 +352,12 @@ Transform:
   m_GameObject: {fileID: 2969212468810188959}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.34, y: 0.34, z: 0.34}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8381491348769795624}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3770622826847517897
 CapsuleCollider:
@@ -446,6 +447,7 @@ MonoBehaviour:
   moveAmount: 0
   sprintInput: 0
   jumpInput: 0
+  pause: 0
 --- !u!114 &3504977360425056020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +474,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInteracting: 0
+  hurtSound:
+    Guid:
+      Data1: 1009367678
+      Data2: 1123296181
+      Data3: -1190092158
+      Data4: 1234755682
+    Path: event:/Monster Hurt Noises
+  deathVignette: {fileID: 0}
+  deathVignetteDirt: {fileID: 0}
+  deadmsg: {fileID: 0}
+  regenHitTime: 5
 --- !u!114 &3241591726120098437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,9 +500,9 @@ MonoBehaviour:
   isSprinting: 0
   isJumping: 0
   isGrounded: 1
-  walkingSpeed: 3
-  runningSpeed: 7
-  sprintingSpeed: 12
+  walkingSpeed: 1
+  runningSpeed: 2
+  sprintingSpeed: 6
   rotationSpeed: 18
   leapingVelocity: 3
   fallingVelocity: 33
@@ -499,6 +512,18 @@ MonoBehaviour:
     m_Bits: 128
   raycastHeightOffset: 0.5
   gravityIntensity: -15
+--- !u!114 &4179116134183004278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2969212468810188959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3efe6e054397b55408a423a79fd52730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3065776480216575583
 GameObject:
   m_ObjectHideFlags: 0

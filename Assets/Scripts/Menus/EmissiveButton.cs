@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class EmissiveButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerDownHandler
 {
     [SerializeField] Material hoverMaterial;
-    [SerializeField] float clickScale = 1.1f;
-
+    [SerializeField] float clickScale = 0.9f;
+    [SerializeField] EventReference selectClip;
+    [SerializeField] EventReference confirmClip;
     Image image;
 
     private void Awake()
@@ -19,6 +19,10 @@ public class EmissiveButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public virtual void OnPointerClick(PointerEventData eventData)
     {
         transform.localScale = Vector3.one;
+
+        if (selectClip.IsNull) return;
+        AudioManager.instance.PlayOneShot(confirmClip, transform.position);
+        
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -28,8 +32,13 @@ public class EmissiveButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!hoverMaterial) return;
-        image.material = hoverMaterial;
+        if (hoverMaterial)
+        {
+            image.material = hoverMaterial;
+        }
+
+        if (selectClip.IsNull) return;
+        AudioManager.instance.PlayOneShot(selectClip, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)

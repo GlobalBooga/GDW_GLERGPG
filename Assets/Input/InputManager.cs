@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
     
     private Vector2 movementInput;
     
-    private PlayerControls playerControls;
+    public PlayerControls playerControls;
     private PlayerLocomotion playerLocomotion;
     private AnimatorManager animatorManager;
 
@@ -84,12 +84,24 @@ public class InputManager : MonoBehaviour
         if (pause)
         {
             GameManager.Instance.PauseGame();
-            playerControls.Default.Disable();
+            PausePlayer();
         }
         else
         {
             GameManager.Instance.UnPauseGame();
-            playerControls.Default.Enable();
+            UnPausePlayer();
         }
+    }
+
+
+
+    public void PausePlayer()
+    {
+        playerControls.Default.Disable();
+    }
+
+    public void UnPausePlayer()
+    {
+        playerControls.Default.Enable();
     }
 }
